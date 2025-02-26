@@ -1,145 +1,221 @@
-/* General Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
+/* Global Styling */
 body {
-  font-family: 'Roboto', sans-serif;
-  background-color: #fff8f0; /* Soft cream background */
-  color: #1e1e24; /* Dark charcoal text */
-  line-height: 1.6;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #f4f4f4;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 /* Navigation Bar */
-header {
-  background-color: #1e1e24; /* Dark charcoal */
-  padding: 20px;
-  color: white;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transition: background 0.3s ease-in-out;
 }
 
 .navbar .logo {
+  color: #abaaaa;
   font-size: 24px;
   font-weight: 600;
-  text-transform: uppercase;
-  color: white;
-  letter-spacing: 1px;
+  text-decoration: none;
+  transition: 0.3s;
 }
 
-nav {
-  display: flex;
-  gap: 15px;
+.navbar .logo:hover {
+  color: #d67171;
 }
 
-nav a {
-  color: white;
-  font-size: 16px;
-  text-transform: capitalize;
-  transition: color 0.3s ease;
-}
-
-nav a:hover {
-  color: #92140c; /* Rich red hover color */
-}
-
-/* Hero Section */
+/* Hero Section with Auto Sliding Background */
 .hero {
-  background-color: #92140c; /* Rich red */
-  color: #fff8f0; /* Soft cream text */
-  padding: 100px 20px;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  color: #eee9e9;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  animation: fadeIn 1s ease-in-out;
+  padding: 20px;
 }
 
 .hero h1 {
-  font-size: 36px;
-  font-weight: 700;
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  animation: fadeInDown 0.8s ease-in-out;
 }
 
 .hero p {
-  font-size: 18px;
-  margin: 20px 0;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: #7b7878;
+  animation: fadeInUp 0.8s ease-in-out;
 }
 
-.cta {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
+/* Background Image Slider */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  animation: bgSlide 6s infinite linear;
 }
 
+@keyframes bgSlide {
+  0%, 20% { background-image: url('mechanic1.jpg'); opacity: 1; transform: scale(1.05); }
+  25% { opacity: 0; transform: scale(1); }
+  30%, 50% { background-image: url('mechanic2.jpg'); opacity: 1; transform: scale(1.05); }
+  55% { opacity: 0; transform: scale(1); }
+  60%, 80% { background-image: url('mechanic3.jpg'); opacity: 1; transform: scale(1.05); }
+  85% { opacity: 0; transform: scale(1); }
+  90%, 100% { background-image: url('mechanic1.jpg'); opacity: 1; transform: scale(1.05); }
+}
+
+
+/* Buttons */
 .cta .btn {
-  background-color: #1e1e24; /* Dark charcoal */
-  color: #fff8f0; /* Soft cream */
-  padding: 15px 25px;
-  font-size: 18px;
-  font-weight: 500;
+  display: inline-block;
+  padding: 20px 40px;
+  margin: 10px;
+  font-size: 1rem;
+  color: #c8c0c0;
+  background: #252531;
+  text-decoration: none;
   border-radius: 50px;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: 0.3s ease-in-out;
+  transform: scale(1);
 }
 
 .cta .btn:hover {
-  background-color: #fff8f0; /* Soft cream hover */
-  color: #92140c; /* Rich red text */
-  transform: translateY(-5px);
+  background: #3b3a37;
+  transform: scale(1.1);
 }
 
 /* Services Section */
 .services {
-  padding: 50px 20px;
-  background-color: #f9f9f9;
   text-align: center;
+  padding: 60px 20px;
+  background: #fff;
 }
 
 .services h2 {
-  font-size: 32px;
-  font-weight: 700;
-  margin-bottom: 40px;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
 }
 
 .service-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 20px;
 }
 
 .service-card {
-  background-color: #ffffff;
+  background: #fff;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  max-width: 320px;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+  border-radius: 15px;
+  transition: 0.3s ease-in-out;
+  transform: scale(1);
+  position: relative;
+  overflow: hidden;
 }
 
 .service-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.25);
 }
 
-.service-card h3 {
-  font-size: 24px;
-  font-weight: 600;
-  margin-bottom: 10px;
-  color: #1e1e24; /* Dark charcoal */
+.service-card::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background: #ffcc00;
+  bottom: 0;
+  left: 0;
+  transition: 0.3s ease-in-out;
 }
 
-.service-card p {
-  font-size: 16px;
+.service-card:hover::after {
+  height: 8px;
 }
 
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #222;
+  color: #fff;
+  margin-top: 50px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .service-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .service-card {
+    width: 90%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 15px;
+  }
+
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero p {
+    font-size: 0.9rem;
+  }
+
+  .cta .btn {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+  }
+}
+/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* Form Styling (Login, Signup, Booking) */
 .container {
   max-width: 600px;
